@@ -21,7 +21,7 @@ RSPLLogger is Kotlin logging library that brings some extra functionality:
   - errorLog()
 
   To Send/Upload the logs file on server:
-
-    ```sh
-    - sendLogToServer(context, "Your Server URL")
-      ```
+      
+        ```sh
+  $ sendLogToServer(context, "Your Server URL")
+  ```

@@ -2,9 +2,6 @@ package com.rspl.rspl_utility_logger.helpers
 
 
 import android.content.Context
-import android.content.Intent
-import android.widget.Toast
-import androidx.core.content.FileProvider
 import java.io.File
 import java.io.FileNotFoundException
 
@@ -24,28 +21,13 @@ internal fun generateFileInInternalStorage(context: Context): File? {
     return file
 }
 
-
-// Method to open the Log File
-fun openLogsFile(context: Context) {
+// Method to delete Log file
+fun deleteLogsFile(context: Context) {
     try {
-        val root = context.filesDir
+        val root = context.getExternalFilesDir(context.appName())
         val file = File(root, fileName(context))
-        val authority = "${context.packageName}.com.rspl.rspl_utility_logger"
-        val contentUri = FileProvider.getUriForFile(context, authority, file)
-        if (file.exists()) {
-            val mime = "text/html"
-            // Open Log file
-            val intent = Intent().also {
-                it.action = Intent.ACTION_VIEW
-                it.setDataAndType(contentUri, mime)
-                it.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-                it.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            }
-            context.startActivity(intent)
-        } else {
-            Toast.makeText(context, "Logs file is empty!",
-                Toast.LENGTH_SHORT).show()
-        }
+        if (file.exists())
+            file.delete()
     } catch (e: FileNotFoundException) {
         e.printStackTrace()
     }

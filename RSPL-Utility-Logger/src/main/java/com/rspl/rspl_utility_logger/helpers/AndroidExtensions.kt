@@ -1,5 +1,6 @@
 package com.rspl.rspl_utility_logger.helpers
 
+import android.app.Activity
 import android.content.Context
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
@@ -18,4 +19,9 @@ internal fun Context.appName(): String {
         packageManager.getApplicationLabel(applicationInfo) .toString()
     else
         "UnknownAppName"
+}
+
+// Extension function to delete logs file
+fun Activity.deleteLogsFile() {
+    deleteLogsFile(this)
 }

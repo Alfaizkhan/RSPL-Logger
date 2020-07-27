@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">RSPLUtilityAndroid</string>
+    <string name="delete_logs">Delete Log File</string>
+    <string name="upload_to_server">Upload to Server</string>
 </resources>

@@ -17,7 +17,7 @@ import java.util.*
 import kotlin.math.min
 
 
-object RsplLogger: Logger{
+object RSPLLogger: Logger{
 
     private var tree: Timber.Tree? = null
     private var response = "Error"
@@ -51,7 +51,7 @@ object RsplLogger: Logger{
     }
 
     private fun logNotInitialised() {
-        Timber.e("Please initialise RSPL Logger\nstartWithRSPLLogger()")
+        Timber.e("Please initialise RSPLLogger\nstartWithRSPLLogger()")
     }
 
     override fun verboseLog(message: String) {
@@ -101,8 +101,13 @@ object RsplLogger: Logger{
             val connection: HttpURLConnection?
             val root = context.getExternalFilesDir(context.appName())
             val pathToOurFile = File(root, fileName(context))
-            val urlServer: String = url
 
+            // If file not created or deleted by user
+            if (!pathToOurFile.exists()){
+                generateFileInInternalStorage(context)
+            }
+
+            val urlServer: String = url
             var bytesRead: Int
             var bytesAvailable: Int
             var bufferSize: Int
@@ -122,7 +127,7 @@ object RsplLogger: Logger{
                 // Enable POST method
                 connection.requestMethod = "POST"
                 connection.setRequestProperty("Connection", "Keep-Alive")
-                connection.setRequestProperty("ENCTYPE", "multipart/form-data");
+                connection.setRequestProperty("ENCTYPE", "multipart/form-data")
                 connection.setRequestProperty(
                     "Content-Type",
                     "multipart/form-data; boundary=$boundary"

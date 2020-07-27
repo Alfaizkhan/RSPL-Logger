@@ -1,6 +1,5 @@
 package com.rspl.rspl_utility_logger.helpers
 
-import android.app.Activity
 import android.content.Context
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager

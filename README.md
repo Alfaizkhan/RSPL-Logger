@@ -27,3 +27,9 @@ RSPLLogger is Kotlin logging library that brings some extra functionality:
 ```sh
 $ sendLogToServer(context, "Your Server URL")
 ```
+
+  To Delete the logs file from storage Use Extension function:
+      
+```sh
+$ deleteLogsFile()
+```

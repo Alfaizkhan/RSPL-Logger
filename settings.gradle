@@ -1,0 +1,3 @@
+include ':RSPL-Utility-Logger'
+include ':app'
+rootProject.name = "RSPLUtilityAndroid"

@@ -14,13 +14,11 @@ RSPLLogger is Kotlin logging library that brings some extra functionality:
   ```
 
   To log an event use any of these functions:
-    ```sh
   - verboseLog()
   - debugLog()
   - infoLog()
   - warnLog()
   - errorLog()
-      ```
 
   To Send/Upload the logs file on server:
 

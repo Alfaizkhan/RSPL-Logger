@@ -33,3 +33,7 @@ $ sendLogToServer(context, "Your Server URL")
 ```sh
 $ deleteLogsFile()
 ```
+
+### Note
+  - Please refer example for better Understanding.
+  

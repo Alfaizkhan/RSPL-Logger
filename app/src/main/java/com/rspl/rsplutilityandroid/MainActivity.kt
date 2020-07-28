@@ -9,6 +9,7 @@ import com.rspl.rspl_utility_logger.RSPLLogger.infoLog
 import com.rspl.rspl_utility_logger.RSPLLogger.verboseLog
 import com.rspl.rspl_utility_logger.RSPLLogger.warnLog
 import com.rspl.rspl_utility_logger.helpers.deleteLogsFile
+import com.rspl.rspl_utility_logger.helpers.shareLogsFile
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : Activity() {
@@ -31,7 +32,12 @@ class MainActivity : Activity() {
         }
 
         btn_upload.setOnClickListener {
+            //This URL is Dummy Server For Testing
             RSPLLogger.sendLogToServer(this, "http://ptsv2.com/t/mickey/post")
+        }
+
+        btn_share.setOnClickListener {
+            shareLogsFile("rspl.test.all@gmail.com")
         }
     }
 }

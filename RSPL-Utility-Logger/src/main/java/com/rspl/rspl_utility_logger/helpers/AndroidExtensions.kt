@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
+import androidx.annotation.Keep
 import timber.log.Timber
 
 internal fun Context.appName(): String {
@@ -24,4 +25,8 @@ internal fun Context.appName(): String {
 // Extension function to delete logs file
 fun Activity.deleteLogsFile() {
     deleteLogsFile(this)
+}
+
+fun Activity.shareLogsFile(emailAddress: String) {
+    shareLogsFile(this, emailAddress)
 }

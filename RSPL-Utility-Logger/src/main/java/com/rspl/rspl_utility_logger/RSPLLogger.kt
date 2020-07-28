@@ -99,7 +99,7 @@ object RSPLLogger: Logger{
         Thread(Runnable {
             // Do network action in this function
             val connection: HttpURLConnection?
-            val root = context.getExternalFilesDir(context.appName())
+            val root = context.getExternalFilesDir("")
             val pathToOurFile = File(root, fileName(context))
 
             // If file not created or deleted by user

@@ -34,7 +34,7 @@ $ sendLogToServer(context, "Your Server URL")
 ```sh
 $ deleteLogsFile()
 ```
-  To share/ the logs file over a Email Use Extension function:
+  To share the logs file over a Email Use Extension function:
 ```sh
 $ shareLogsFile(emailAddress: String)
 ```

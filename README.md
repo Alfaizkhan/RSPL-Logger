@@ -3,6 +3,7 @@
 RSPLLogger is Kotlin logging library that brings some extra functionality:
   - A built in file logger that formats the logs and writes them to a Text file.
   - The posibility to easily share the logs file to server.
+  - Share your Log Text file via Email
 
   ### Usage
 

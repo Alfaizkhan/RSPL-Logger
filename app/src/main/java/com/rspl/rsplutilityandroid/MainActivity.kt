@@ -1,7 +1,7 @@
 package com.rspl.rsplutilityandroid
 
-import android.app.Activity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.rspl.rspl_utility_logger.RSPLLogger
 import com.rspl.rspl_utility_logger.RSPLLogger.debugLog
 import com.rspl.rspl_utility_logger.RSPLLogger.errorLog
@@ -12,7 +12,7 @@ import com.rspl.rspl_utility_logger.helpers.deleteLogsFile
 import com.rspl.rspl_utility_logger.helpers.shareLogsFile
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : Activity() {
+class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)

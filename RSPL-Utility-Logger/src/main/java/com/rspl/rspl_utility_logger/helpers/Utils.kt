@@ -31,35 +31,35 @@ fun deleteLogsFile(context: Context) {
     try {
         val root = context.getExternalFilesDir("")
         val file = File(root, fileName(context))
-        if (file.exists())
+        if (file.exists()) {
             file.delete()
+        }
     } catch (e: FileNotFoundException) {
         e.printStackTrace()
     }
 }
 
 // Method to Share Log file Over email
-fun shareLogsFile(activity: Activity, emailAddress: String) {
-    val context = activity.applicationContext
+fun shareLogsFile(context: Context, emailAddress: String) {
+    val appContext = context.applicationContext
     try {
-        val root = context.getExternalFilesDir("")
-        val file = File(root, fileName(context))
+        val root = appContext.getExternalFilesDir("")
+        val file = File(root, fileName(appContext))
         if (file.exists()) {
-            val authority = "${context.packageName}.com.rspl.rspl_utility_logger"
-            val contentUri = FileProvider.getUriForFile(context, authority, file)
-            val intent = ShareCompat.IntentBuilder.from(activity)
+            val authority = "${appContext.packageName}.com.rspl.rspl_utility_logger"
+            val contentUri = FileProvider.getUriForFile(appContext, authority, file)
+            val intent = ShareCompat.IntentBuilder.from(context as Activity)
                 .setType("text/plain")
-                .setSubject("Share logs file")
                 .setStream(contentUri)
-                .setChooserTitle("${context.appName()} logs")
+                .setChooserTitle("${appContext.appName()} logs")
                 .setEmailTo(arrayOf(emailAddress))
-                .setSubject("[LOGS] ${context.appName()}")
+                .setSubject("[LOGS] ${appContext.appName()}")
                 .createChooserIntent()
                 .addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
                 .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            activity.startActivity(Intent.createChooser(intent, "Share logs file"))
+            context.startActivity(Intent.createChooser(intent, "Share logs file"))
         } else {
-            Toast.makeText(activity, "Logs file is empty!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "Logs file is empty!", Toast.LENGTH_SHORT).show()
         }
     } catch (e: FileNotFoundException) {
         e.printStackTrace()

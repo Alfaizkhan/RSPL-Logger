@@ -1,4 +1,4 @@
-package com.rspl.rspl_utility_logger.Interface
+package com.rspl.rspl_utility_logger.`interface`
 
 import android.content.Context
 
@@ -8,6 +8,5 @@ interface Logger {
     fun debugLog(message: String)
     fun warnLog(message: String)
     fun errorLog(message:String)
-
-    fun sendLogToServer(context: Context, url : String): String?
+    fun sendLogToServer(context: Context, url : String)
 }

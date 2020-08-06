@@ -39,9 +39,10 @@ dependencies {
     // Timber
     implementation 'com.jakewharton.timber:timber:4.7.1'
 
+    //Logging Interceptor
+    implementation("com.squareup.okhttp3:logging-interceptor:4.8.0")
+
     // REST Api
     implementation 'com.squareup.retrofit2:retrofit:2.6.2'
     implementation 'com.squareup.retrofit2:converter-gson:2.6.2'
-    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
-
 }

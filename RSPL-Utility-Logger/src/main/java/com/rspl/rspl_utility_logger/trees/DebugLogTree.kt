@@ -1,4 +1,4 @@
-package com.rspl.rspl_utility_logger.Trees
+package com.rspl.rspl_utility_logger.trees
 
 import android.util.Log
 import timber.log.Timber

@@ -16,21 +16,12 @@ class FileLoggingTree(private val file: File) : Timber.DebugTree() {
                 Locale.getDefault()
             ).format(Date())
 
-            val color =  when (priority) {
-                Log.VERBOSE -> "#424242"
-                Log.DEBUG -> "#2196F3"
-                Log.INFO -> "#4CAF50"
-                Log.WARN -> "#FFC107"
-                Log.ERROR-> "#F44336"
-                else -> "#FFAB00"
-            }
-
             val priorityTag = when (priority) {
-                Log.VERBOSE -> "VERBOSE"
-                Log.DEBUG -> "DEBUG"
-                Log.INFO -> "INFO"
-                Log.WARN -> "WARN"
-                Log.ERROR-> "ERROR"
+                Log.VERBOSE           -> "VERBOSE"
+                Log.DEBUG             -> "DEBUG"
+                Log.INFO              -> "INFO"
+                Log.WARN              -> "WARN"
+                Log.ERROR, Log.ASSERT -> "ERROR"
                 else -> "#FFFFFF"
             }
 
@@ -40,7 +31,7 @@ class FileLoggingTree(private val file: File) : Timber.DebugTree() {
                 .append(" $tag >>> ")
                 .append("$logTimeStamp, ")
                 .append("$priorityTag, ")
-                .append("$message |" )
+                .append("$message |")
                 .append("\n\r")
             writer.flush()
             writer.close()

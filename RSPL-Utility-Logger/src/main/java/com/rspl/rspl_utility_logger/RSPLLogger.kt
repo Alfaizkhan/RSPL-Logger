@@ -1,6 +1,7 @@
 package com.rspl.rspl_utility_logger
 
 import android.content.Context
+import android.util.Log
 import android.widget.Toast
 import com.rspl.rspl_utility_logger.`interface`.Logger
 import com.rspl.rspl_utility_logger.helpers.appName
@@ -18,18 +19,11 @@ import retrofit2.Callback
 import retrofit2.Response
 import timber.log.Timber
 import java.io.File
-import java.util.*
-
 
 object RSPLLogger : Logger {
 
     private var tree: Timber.Tree? = null
-    private var response = "Error"
-    private const val lineEnd = "\r\n"
-    private const val twoHyphens = "--"
-    private val boundary = UUID.randomUUID().toString()
-    private val token = Math.random()
-    private val taskId = Math.random()
+
     private val fileUploadClient by lazy {
         FileUploadServiceClientBuilder.build()
     }
@@ -59,44 +53,39 @@ object RSPLLogger : Logger {
         Timber.e("Please initialise RSPLLogger\nstartWithRSPLLogger()")
     }
 
-    override fun verboseLog(message: String) {
+    override fun log(priority: Int, message: String) {
         if (isInitialised()) {
-            Timber.v(message)
+            when (priority) {
+                Log.VERBOSE -> Timber.v(message)
+                Log.DEBUG -> Timber.d(message)
+                Log.INFO -> Timber.i(message)
+                Log.WARN -> Timber.w(message)
+                Log.ERROR, Log.ASSERT -> Timber.e(message)
+                else -> Timber.v(message)
+            }
         } else {
             logNotInitialised()
         }
     }
 
-    override fun infoLog(message: String) {
-        if (isInitialised()) {
-            Timber.i(message)
-        } else {
-            logNotInitialised()
-        }
+    fun verboseLog(message: String) {
+        log(Log.VERBOSE, message)
     }
 
-    override fun debugLog(message: String) {
-        if (isInitialised()) {
-            Timber.d(message)
-        } else {
-            logNotInitialised()
-        }
+    fun infoLog(message: String) {
+        log(Log.INFO, message)
     }
 
-    override fun warnLog(message: String) {
-        if (isInitialised()) {
-            Timber.w(message)
-        } else {
-            logNotInitialised()
-        }
+    fun debugLog(message: String) {
+        log(Log.DEBUG, message)
     }
 
-    override fun errorLog(message: String) {
-        if (isInitialised()) {
-            Timber.e(message)
-        } else {
-            logNotInitialised()
-        }
+    fun warnLog(message: String) {
+        log(Log.WARN, message)
+    }
+
+    fun errorLog(message: String) {
+        log(Log.ERROR, message)
     }
 
     override fun sendLogToServer(context: Context, url: String) {

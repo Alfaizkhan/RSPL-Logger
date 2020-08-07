@@ -17,7 +17,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
         RSPLLogger.startWithRSPLLogger(applicationContext)
 
         verboseLog("RSPL Verbos")
@@ -25,7 +24,6 @@ class MainActivity : AppCompatActivity() {
         infoLog("RSPL info")
         warnLog("RSPL warn")
         errorLog("RSPL Error")
-
 
         btn_delete.setOnClickListener {
             deleteLogsFile()

@@ -13,26 +13,28 @@ import java.io.FileNotFoundException
 
 internal fun fileName(context: Context) = context.appName() + ".txt"
 
-internal fun generateFileInInternalStorage(context: Context): File? {
-    var file: File? = null
-    val root = context.getExternalFilesDir("")
-    var dirExists = true
-    if (!root!!.exists()) {
-        dirExists = root.mkdir()
+    internal fun generateFileInInternalStorage(context: Context): File? =
+    context.getExternalFilesDir("")?.let {
+        var dirExists = true
+        if (!it.exists()) {
+            dirExists = it.mkdir()
+        }
+
+        if (dirExists) {
+            File(it, fileName(context))
+        } else {
+            null
+        }
     }
-    if (dirExists) {
-        file = File(root, fileName(context))
-    }
-    return file
-}
 
 // Method to delete Log file
 fun deleteLogsFile(context: Context) {
     try {
-        val root = context.getExternalFilesDir("")
-        val file = File(root, fileName(context))
-        if (file.exists()) {
-            file.delete()
+        context.getExternalFilesDir("")?.also {
+            val file = File(it, fileName(context))
+            if (file.exists()) {
+                file.delete()
+            }
         }
     } catch (e: FileNotFoundException) {
         e.printStackTrace()

@@ -22,7 +22,6 @@ object FileUploadServiceClientBuilder {
             if (BuildConfig.DEBUG) {
                 addInterceptor(httpLoggingInterceptor)
             }
-            //addInterceptor(HeaderInterceptor())
             build()
         }
     }
@@ -34,20 +33,5 @@ object FileUploadServiceClientBuilder {
             addConverterFactory(GsonConverterFactory.create())
             build().create(FileUploadService::class.java)
         }
-    }
-}
-
-private class HeaderInterceptor : Interceptor {
-
-    @Throws(IOException::class)
-    override fun intercept(chain: Interceptor.Chain): Response {
-        val original = chain.request()
-
-        val requestBuilder = original.newBuilder()
-            .header("Content-Type", "text/plain; charset=UTF-8")
-            .method(original.method, original.body)
-
-        val request = requestBuilder.build()
-        return chain.proceed(request)
     }
 }
